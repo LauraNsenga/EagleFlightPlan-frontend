@@ -1,6 +1,4 @@
-echo "# Environment files" >> .gitignore
-echo ".env" >> .gitignore
-echo ".env.*" >> .gitignore
-echo "!.env.example" >> .gitignore
-echo "*.env" >> .gitignore
-echo ".env.backup" >> .gitignore
+# local env files
+.env.local
+.env.*.local
+.env
