@@ -1,13 +1,13 @@
 import axios from 'axios'
 import Utils from '../config/utils.js'
-//import AuthServices from './authServices.js'
 import Router from '../router/router.js'
+
 var baseurl = ''
 if (import.meta.env.DEV) {
-  baseurl = "http://localhost:3029/resume-t9";
+  baseurl = "http://localhost:3029/EaglesFlightPlan";
 
 } else {
-  baseurl = "/resume-t9/";
+  baseurl = "/EaglesFlightPlan/";
 }
 const apiClient = axios.create({
   baseURL: baseurl,

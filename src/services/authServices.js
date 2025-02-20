@@ -22,7 +22,7 @@ export default {
       });
   },
   authorizeUser(code) {
-    return apiClient.post("authorize", code);
+    return apiClient.post("authorize/user", code);
   },
   logoutUser(token) {
     return apiClient.post("logout", token);

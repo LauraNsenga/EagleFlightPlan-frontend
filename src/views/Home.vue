@@ -1,35 +1,26 @@
 <template>
-    <div>
-      <MenuBar />
-      <v-container class="fill-height" fluid>
-        <v-row align="center" justify="center">
-          <v-col cols="12" sm="10" md="8">
-            <v-card class="elevation-2">
-              <v-card-title class="text-h5">
-                Welcome to Eagle Flight Plan
-              </v-card-title>
-              <v-card-text>
-                <p>Welcome {{ userName }}! Your flight plan journey begins here.</p>
-                <!-- Add more content for your home page -->
-              </v-card-text>
-            </v-card>
-          </v-col>
-        </v-row>
-      </v-container>
-    </div>
-  </template>
-  
-  <script setup>
-  import { ref, onMounted } from 'vue';
-  import MenuBar from '../components/MenuBar.vue';
-  import Utils from '../config/utils';
-  
-  const userName = ref('');
-  
-  onMounted(() => {
-    const user = Utils.getStore('user');
-    if (user) {
-      userName.value = `${user.fName} ${user.lName}`;
-    }
-  });
-  </script>
+  <v-container class="d-flex flex-column align-center justify-center text-center">
+    <v-img src="@/assets/eagle-logo.png" max-height="120" contain class="mt-10"></v-img>
+    <h1 class="text-h4 font-weight-bold mt-4">Welcome to Eagle Flight Plan</h1>
+    <p class="text-subtitle-1 mt-2">Your journey to academic success starts here.</p>
+
+    <v-btn color="primary" class="mt-4" @click="navigateTo('dashboard')">Go to Dashboard</v-btn>
+    <v-btn color="secondary" class="mt-2" @click="navigateTo('profile')">View Profile</v-btn>
+  </v-container>
+</template>
+
+<script setup>
+import { useRouter } from "vue-router";
+
+const router = useRouter();
+
+const navigateTo = (route) => {
+  router.push({ name: route });
+};
+</script>
+
+<style scoped>
+.v-container {
+  min-height: 80vh;
+}
+</style>

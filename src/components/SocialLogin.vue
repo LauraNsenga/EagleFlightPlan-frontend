@@ -16,7 +16,7 @@ const loginWithGoogle = () => {
   window.google.accounts.id.initialize({
     client_id: client,
     cancel_on_tap_outside: false,
-    auto_select: true,
+    auto_select: false,
     callback: window.handleCredentialResponse,
   });
   window.google.accounts.id.renderButton(document.getElementById("parent_id"), {

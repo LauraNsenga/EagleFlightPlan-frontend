@@ -1,8 +1,14 @@
+
+
+<script setup>
+import SocialLogin from "../components/SocialLogin.vue";
+</script>
+
 <template>
-  <v-container class="fill-height" fluid>
+  <v-container fluid class="login-container fill-height">
     <v-row align="center" justify="center">
-      <v-col cols="12" sm="8" md="4">
-        <v-card class="elevation-12">
+      <v-col cols="12" sm="8" md="6" lg="4">
+        <v-card class="login-card elevation-12">
           <v-card-title class="text-center">
             <v-img
               class="mx-auto my-4"
@@ -14,8 +20,25 @@
             <h1 class="text-h5 mb-2">Eagle Flight Plan</h1>
           </v-card-title>
 
+
           <v-card-text class="text-center">
             <SocialLogin />
+          </v-card-text>
+
+          <v-card-text class="text-center pt-0">
+            <v-divider class="my-4">
+              <span class="text-overline text-medium-emphasis">OR</span>
+            </v-divider>
+            
+            <p class="text-body-2 text-medium-emphasis mb-0">
+              Don't have an account? Sign up with Google to get started.
+            </p>
+          </v-card-text>
+
+          <v-card-text class="text-center text-caption text-medium-emphasis">
+            By continuing, you agree to our 
+            <a href="#" class="text-decoration-none">Terms of Service</a> and 
+            <a href="#" class="text-decoration-none">Privacy Policy</a>
           </v-card-text>
         </v-card>
       </v-col>
@@ -23,33 +46,35 @@
   </v-container>
 </template>
 
-<script setup>
-import ocLogo from "/oc-logo-white.png";
-import { ref, onMounted } from "vue";
-import SocialLogin from '../components/SocialLogin.vue';
-import { useRouter } from 'vue-router';
-import Utils from '../config/utils';
-
-const router = useRouter();
-const logoURL = ref("");
-
-onMounted(() => {
-  logoURL.value = ocLogo;
-  
-  // Check if user is already logged in
-  const user = Utils.getStore("user");
-  if (user) {
-    router.push({ name: "home" });
-  }
-});
-</script>
-
 <style scoped>
-.v-container {
-  background-color: #f5f5f5;
+.login-container {
+  background: linear-gradient(135deg, var(--v-primary-base) 0%, var(--v-secondary-base) 100%);
+  min-height: 100vh;
 }
 
-.v-card {
-  border-radius: 20px;
+.login-card {
+  border-radius: 16px;
+  padding: 2rem 1.5rem;
+}
+
+.v-divider {
+  position: relative;
+}
+
+.v-divider span {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  padding: 0 1rem;
+}
+
+a {
+  color: var(--v-primary-base);
+}
+
+a:hover {
+  color: var(--v-secondary-base);
 }
 </style>

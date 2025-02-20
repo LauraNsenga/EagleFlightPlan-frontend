@@ -1,18 +1,25 @@
-import { fileURLToPath, URL } from 'node:url'
-import { defineConfig } from 'vite'
-import vue from '@vitejs/plugin-vue'
-import vueDevTools from 'vite-plugin-vue-devtools'
-import vuetify from 'vite-plugin-vuetify' 
+import { defineConfig } from "vite";
+import vue from "@vitejs/plugin-vue";
+import vuetify from "vite-plugin-vuetify";
 
-export default defineConfig({
-  plugins: [
-    vue(),
-    vueDevTools(),
-    vuetify({ autoImport: true }), // Add this plugin
-  ],
-  resolve: {
-    alias: {
-      '@': fileURLToPath(new URL('./src', import.meta.url))
+import dns from "dns";
+dns.setDefaultResultOrder("verbatim");
+
+export default () => {
+  const baseURL =
+
+    process.env.APP_ENV === "development" ? "/" : "flightplan";
+   
+
+
+  return defineConfig({
+    plugins: [vue(), vuetify({ autoImport: true })],
+
+    server: {
+      host: "localhost",
+      port: 8081,
     },
-  },
-})
+
+    base: baseURL,
+  });
+};

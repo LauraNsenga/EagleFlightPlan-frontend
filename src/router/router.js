@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from "vue-router";
 import Utils from '../config/utils'; 
 import Login from "../views/Login.vue";
+import Home from "../views/Home.vue"
 
 
 const router = createRouter({
@@ -8,7 +9,7 @@ const router = createRouter({
   routes: [
     {
       path: '/',
-      redirect: '/login'  // Redirect root path to login
+      redirect: '/login'  
     },
     {
       path: '/login',
@@ -18,15 +19,10 @@ const router = createRouter({
     {
       path: '/home',
       name: 'home',
-      component: () => import('../views/Home.vue'),
+      component: Home,
       meta: { requiresAuth: true }
     },
-    {
-      path: '/nest',
-      name: 'nest',
-      component: () => import('../views/AfterNest.vue'),
-      meta: { requiresAuth: true }
-    }
+  
   ],
 });
 
