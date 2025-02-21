@@ -19,10 +19,14 @@
 
       <div v-if="user">
         <v-btn class="mx-2" @click="navigateTo('home')">
+          Home
+        </v-btn>
+
+        <v-btn class="mx-2" @click="navigateTo('flightPlan')">
           Flight Plan
         </v-btn>
 
-        <v-btn class="mx-2" @click="navigateTo('nest')">
+        <v-btn class="mx-2" @click="navigateTo('afterNest')">
           Life After Nest
         </v-btn>
 

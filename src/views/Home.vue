@@ -1,27 +1,7 @@
 <template>
   <div class="min-h-screen bg-white">
-    <!-- Header -->
-    <div class="bg-red-900 p-4">
-      <div class="flex items-center">
-        <h1 class="text-white text-xl ml-2">Career Services</h1>
-        <div class="ml-auto">
-          <nav class="flex space-x-4">
-            <button 
-              @click="$emit('navigate', 'flight-plan')"
-              class="text-white hover:text-gray-200"
-            >
-              Flight Plan
-            </button>
-            <button 
-              @click="$emit('navigate', 'life-after-nest')"
-              class="text-white hover:text-gray-200"
-            >
-              Life After Nest
-            </button>
-          </nav>
-        </div>
-      </div>
-    </div>
+    
+    
 
     <!-- Main Content -->
     <div class="container mx-auto px-4 py-8">
