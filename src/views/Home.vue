@@ -1,9 +1,5 @@
 <template>
   <div class="min-h-screen bg-white">
-    
-    
-
-    <!-- Main Content -->
     <div class="container mx-auto px-4 py-8">
       <div class="max-w-2xl mx-auto">
         <!-- Greeting -->
@@ -15,37 +11,39 @@
         <div class="mb-8">
           <p class="text-sm text-gray-600 mb-2">Fall 25' Progress</p>
           <div class="h-2 bg-gray-200 rounded">
-            <div class="h-full bg-blue-600 rounded" style="width: 20%;"></div> <!-- 20% Progress -->
+            <div class="h-full bg-blue-600 rounded" style="width: 20%;"></div>
           </div>
         </div>
 
-        <!-- Upcoming Events -->
-        <div class="bg-blue-50 rounded-lg p-6 mb-8 shadow-md">
-          <div class="flex justify-between items-center mb-4">
-            <h2 class="text-xl font-semibold">Upcoming Events</h2>
+        <!-- Upcoming Events Panel - Styled like Chapel Events -->
+        <div class="bg-white rounded-lg shadow-sm mb-8">
+          <div class="flex justify-between items-center p-4 border-b">
+            <h2 class="text-lg font-medium text-gray-900">Upcoming Events</h2>
             <button 
               @click="$emit('navigate', 'events')"
-              class="text-blue-600 hover:text-blue-800"
+              class="text-teal-600 hover:text-teal-700 text-sm font-medium"
             >
-              View All →
+              View all →
             </button>
           </div>
           
-          <div class="space-y-4">
-            <div v-for="event in events" :key="event.id" class="bg-white p-4 rounded shadow-sm border-l-4 border-blue-600">
-              <div class="text-sm text-gray-600">{{ event.date }}, {{ event.time }}</div>
-              <div class="font-medium text-gray-800">{{ event.title }}</div>
+          <div class="divide-y divide-gray-100">
+            <div v-for="event in events" :key="event.id" class="p-4">
+              <div class="text-sm text-gray-500 mb-1">{{ event.date }}, {{ event.time }}</div>
+              <div class="text-gray-900 font-medium mb-1">{{ event.title }}</div>
               <div class="text-sm text-gray-600">{{ event.location }}</div>
             </div>
           </div>
 
-          <div class="flex justify-center mt-4 space-x-4">
-            <button class="p-2 hover:bg-blue-100 rounded text-gray-600">
-              ←
-            </button>
-            <button class="p-2 hover:bg-blue-100 rounded text-gray-600">
-              →
-            </button>
+          <div class="flex justify-end p-4 border-t">
+            <div class="flex space-x-2">
+              <button class="text-gray-600 hover:text-gray-800">
+                ←
+              </button>
+              <button class="text-gray-600 hover:text-gray-800">
+                →
+              </button>
+            </div>
           </div>
         </div>
 
@@ -73,16 +71,43 @@
 </template>
 
 <script>
+import { ref, onMounted } from 'vue';
+import userServices from '../services/userServices';
+
 export default {
   name: 'WelcomePage',
-  props: {
-    firstName: {
-      type: String,
-      default: 'Guest'
-    }
-  },
-  data() {
+  setup() {
+    const firstName = ref('Guest');
+    const error = ref(null);
+
+    const fetchUser = async () => {
+      try {
+        // Get the user ID from your authentication store/session
+        // This should be set when the user logs in
+        const userId = localStorage.getItem('userId'); 
+        
+        if (!userId) {
+          console.error('No user ID found');
+          return;
+        }
+
+        const response = await userServices.getOne(userId);
+        if (response.data && response.data.fName) {
+          firstName.value = response.data.fName;
+        }
+      } catch (err) {
+        error.value = 'Failed to load user.';
+        console.error('Error fetching user:', err);
+      }
+    };
+
+    onMounted(() => {
+      fetchUser();
+    });
+
     return {
+      firstName,
+      error,
       events: [
         {
           id: 1,
@@ -106,14 +131,13 @@ export default {
           location: 'Career Center'
         }
       ]
-    }
+    };
   },
   emits: ['navigate']
-}
+};
 </script>
 
 <style scoped>
-/* Additional styling for event items */
 .bg-blue-50 {
   background-color: #eff6ff;
 }
