@@ -1,25 +1,26 @@
-
-
 <script setup>
 import SocialLogin from "../components/SocialLogin.vue";
+import { ref } from "vue";
+
+const logoURL = "/oc-logo-white.png";
 </script>
 
 <template>
   <v-container fluid class="login-container fill-height">
+   
+    <v-app-bar color="burgundy" dense>
+      <v-container class="d-flex align-center">
+        <v-img :src="logoURL" height="40" width="40" contain class="mr-4"></v-img>
+        <v-toolbar-title class="text-white text-h6">Career Services</v-toolbar-title>
+      </v-container>
+    </v-app-bar>
+
     <v-row align="center" justify="center">
       <v-col cols="12" sm="8" md="6" lg="4">
         <v-card class="login-card elevation-12">
           <v-card-title class="text-center">
-            <v-img
-              class="mx-auto my-4"
-              :src="logoURL"
-              height="300"
-              width="100"
-              contain
-            ></v-img>
             <h1 class="text-h5 mb-2">Eagle Flight Plan</h1>
           </v-card-title>
-
 
           <v-card-text class="text-center">
             <SocialLogin />
@@ -29,15 +30,15 @@ import SocialLogin from "../components/SocialLogin.vue";
             <v-divider class="my-4">
               <span class="text-overline text-medium-emphasis">OR</span>
             </v-divider>
-            
+
             <p class="text-body-2 text-medium-emphasis mb-0">
               Don't have an account? Sign up with Google to get started.
             </p>
           </v-card-text>
 
           <v-card-text class="text-center text-caption text-medium-emphasis">
-            By continuing, you agree to our 
-            <a href="#" class="text-decoration-none">Terms of Service</a> and 
+            By continuing, you agree to our
+            <a href="#" class="text-decoration-none">Terms of Service</a> and
             <a href="#" class="text-decoration-none">Privacy Policy</a>
           </v-card-text>
         </v-card>
@@ -76,5 +77,10 @@ a {
 
 a:hover {
   color: var(--v-secondary-base);
+}
+
+/* Burgundy Navbar */
+.v-app-bar {
+  background-color: #800020 !important; /* Burgundy color */
 }
 </style>
