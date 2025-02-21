@@ -3,7 +3,11 @@
     <!-- Header -->
     <div class="bg-red-900 p-4">
       <div class="flex items-center">
-        
+        <img 
+          src="/oc-logo-white.png" 
+          alt="Eagle Logo" 
+          class="h-8 w-8"
+        />
         <h1 class="text-white text-xl ml-2">Career Services</h1>
         <div class="ml-auto">
           <nav class="flex space-x-4">
