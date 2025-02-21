@@ -3,11 +3,6 @@
     <!-- Header -->
     <div class="bg-red-900 p-4">
       <div class="flex items-center">
-        <img 
-          src="/oc-logo-white.png" 
-          alt="Eagle Logo" 
-          class="h-8 w-8"
-        />
         <h1 class="text-white text-xl ml-2">Career Services</h1>
         <div class="ml-auto">
           <nav class="flex space-x-4">
@@ -36,16 +31,16 @@
           Hello {{ firstName }},
         </h1>
 
-        <!-- Progress Bar -->
+        <!-- Fall 25 Progress -->
         <div class="mb-8">
           <p class="text-sm text-gray-600 mb-2">Fall 25' Progress</p>
           <div class="h-2 bg-gray-200 rounded">
-            <div class="h-full bg-blue-200 rounded w-1/2"></div>
+            <div class="h-full bg-blue-600 rounded" style="width: 20%;"></div> <!-- 20% Progress -->
           </div>
         </div>
 
         <!-- Upcoming Events -->
-        <div class="bg-blue-50 rounded-lg p-6 mb-8">
+        <div class="bg-blue-50 rounded-lg p-6 mb-8 shadow-md">
           <div class="flex justify-between items-center mb-4">
             <h2 class="text-xl font-semibold">Upcoming Events</h2>
             <button 
@@ -57,9 +52,9 @@
           </div>
           
           <div class="space-y-4">
-            <div v-for="event in events" :key="event.id" class="bg-white p-4 rounded shadow-sm">
+            <div v-for="event in events" :key="event.id" class="bg-white p-4 rounded shadow-sm border-l-4 border-blue-600">
               <div class="text-sm text-gray-600">{{ event.date }}, {{ event.time }}</div>
-              <div class="font-medium">{{ event.title }}</div>
+              <div class="font-medium text-gray-800">{{ event.title }}</div>
               <div class="text-sm text-gray-600">{{ event.location }}</div>
             </div>
           </div>
@@ -93,11 +88,6 @@
           </div>
         </div>
       </div>
-    </div>
-
-    <!-- Footer -->
-    <div class="absolute bottom-0 left-0 w-full p-4 text-gray-600">
-      <p>© 2025 Eagle Flight Plan</p>
     </div>
   </div>
 </template>
@@ -141,3 +131,22 @@ export default {
   emits: ['navigate']
 }
 </script>
+
+<style scoped>
+/* Additional styling for event items */
+.bg-blue-50 {
+  background-color: #eff6ff;
+}
+
+.bg-blue-600 {
+  background-color: #3182ce;
+}
+
+.text-blue-600 {
+  color: #3182ce;
+}
+
+.text-blue-800 {
+  color: #2b6cb0;
+}
+</style>
